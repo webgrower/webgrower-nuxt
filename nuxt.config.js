@@ -45,12 +45,12 @@ export default {
     },
   },
 
-  // cloudinary: {
-  //   // Cloudinary configuration options
-  //   cloudName: process.env.CLOUD_NAME,
-  //   apiKey: process.env.CLOUD_API_KEY,
-  //   apiSecret: process.env.CLOUD_API_SECRET
-  // },
+  cloudinary: {
+    // Cloudinary configuration options
+    cloudName: process.env.CLOUD_NAME,
+    apiKey: process.env.CLOUD_API_KEY,
+    apiSecret: process.env.CLOUD_API_SECRET
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
