@@ -2,15 +2,14 @@
   <div class="prev-next pb-8">
     <hr class="my-10" />
     <div
-      class="prev-next-item flex items-start relative mb-8"
       v-for="item in prevNextItems"
       :key="item.path"
+      class="prev-next-item flex items-start relative mb-8"
     >
       <NuxtLink
         :to="item.path"
         class="relative w-4/12 bg-gray-200 flex-none border border-gray-100"
         ><NuxtPicture
-          provider="cloudinary"
           :src="item.cover"
           class="absolute rounded u-image blur-up ls-is-cached lazyloaded"
           width="234"

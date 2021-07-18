@@ -35,7 +35,6 @@
     "@heroicons/vue": "^1.0.1",
     "@nuxt/content": "^1.14.0",
     "@nuxt/image": "^0.5.0",
-    "@nuxtjs/cloudinary": "^1.0.3",
     "@nuxtjs/color-mode": "^2.0.10",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/svg": "^0.1.12",
