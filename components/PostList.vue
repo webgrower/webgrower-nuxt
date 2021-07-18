@@ -78,6 +78,9 @@ interface IDateOptions {
 }
 
 export default Vue.extend({
+  components: {
+    PostImage,
+  },
   props: ['posts'],
   methods: {
     formatDate(date: string) {
@@ -88,9 +91,6 @@ export default Vue.extend({
       }
       return new Date(date).toLocaleDateString('en', options)
     },
-  },
-  components: {
-    PostImage,
   },
 })
 </script>

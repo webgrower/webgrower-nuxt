@@ -70,10 +70,7 @@
             ></path>
           </svg>
         </a>
-        <a
-          :href="socialLinks.github"
-          class="text-gray-400 hover:text-gray-500"
-        >
+        <a :href="socialLinks.github" class="text-gray-400 hover:text-gray-500">
           <span class="sr-only">GitHub</span>
           <svg
             class="w-6 h-6"
@@ -95,14 +92,14 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import theme from '~/theme.config.js';
+import theme from '~/theme.config.js'
 export default Vue.extend({
   data() {
     return {
       name: theme.siteName,
-      socialLinks: theme.socialLinks
+      socialLinks: theme.socialLinks,
     }
-  }
+  },
 })
 </script>
 

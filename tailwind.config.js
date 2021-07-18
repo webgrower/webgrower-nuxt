@@ -4,7 +4,7 @@ module.exports = {
     extend: {
       colors: {
         links: '#88C0D0',
-        dark: '#111'
+        dark: '#111',
       },
       gridTemplateColumns: {
         main: '[full-start] 1fr [wide-start] 1fr [main-start]  repeat(8, 1fr) [main-end] 1fr [wide-end] 1fr [full-end]',
@@ -22,17 +22,17 @@ module.exports = {
                 color: theme('colors.indigo.400'),
               },
               h1: {
-                fontWeight: '700'
+                fontWeight: '700',
               },
               '.text-xl': {
                 fontSize: theme('fontSize.xl.0'),
-                lineHeight: theme('lineHeight.7')
+                lineHeight: theme('lineHeight.7'),
               },
               '.mb-2': {
-                marginBottom: theme('margin.2')
+                marginBottom: theme('margin.2'),
               },
               '.mt-0': {
-                marginTop: theme('margin.0')
+                marginTop: theme('margin.0'),
               },
               width: '100%',
             },

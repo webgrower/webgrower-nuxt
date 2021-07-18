@@ -13,7 +13,7 @@ import Vue from 'vue'
 import Header from '~/components/Header.vue'
 import Container from '~/components/Container.vue'
 import Footer from '~/components/Footer.vue'
-import theme from '~/theme.config';
+import theme from '~/theme.config'
 export default Vue.extend({
   components: {
     Header,

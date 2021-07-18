@@ -35,10 +35,11 @@
                 justify-center
                 text-gray-400
                 dark:text-gray-300
-                hover:text-gray-500
-                hover:bg-gray-100
+                hover:text-gray-500 hover:bg-gray-100
                 focus:outline-none
-                focus:ring-2 focus:ring-inset focus:ring-indigo-500
+                focus:ring-2
+                focus:ring-inset
+                focus:ring-indigo-500
                 z-50
               "
               aria-expanded="false"

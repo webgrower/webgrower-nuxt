@@ -5,7 +5,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import PostList from '~/components/PostList.vue'
-import theme from '~/theme.config';
+import theme from '~/theme.config'
 
 export default Vue.extend({
   components: {
