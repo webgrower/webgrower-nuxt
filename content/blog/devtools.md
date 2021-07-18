@@ -2,7 +2,7 @@
 title: Devtools Tips - разрабатываем эффективнее
 description: 'Объемный сборник/справочник наглядных советов о том как повысить эффективность разработки при помощи различных полезных опций в консоли разработчика в браузерах.'
 date: 2021-07-17T20:40:00Z
-cover: /blog/devtools-tips.webp
+cover: /uploads/devtools-tips.webp
 category: tools
 ---
 

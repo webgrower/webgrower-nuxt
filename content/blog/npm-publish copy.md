@@ -2,7 +2,7 @@
 title: Публикация пакета в npm
 description: Короткая заметка о том как правильно опубликовать npm пакет. 
 date: 2020-01-04T17:00:00Z
-cover: /blog/devtools-tips.webp
+cover: /uploads/devtools-tips.webp
 category: blog
 ---
 В процессе вынесения [темы](https://github.com/Defite/gatsby-theme-defite/tree/master/gatsby-theme-defite "Gatsby Defite theme") моего блога в отдельный пакет в npm, я составил небольшой список полезных команд и утилит, необходимых для удобной публикации пакета.

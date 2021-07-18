@@ -41,16 +41,16 @@ export default {
   image: {
     provider: 'cloudinary',
     cloudinary: {
-      baseURL: 'https://res.cloudinary.com/webgrower/image/upload/',
+      baseURL: 'https://res.cloudinary.com/webgrower/image/upload/uploads',
     },
   },
 
-  cloudinary: {
-    // Cloudinary configuration options
-    cloudName: process.env.CLOUD_NAME,
-    apiKey: process.env.CLOUD_API_KEY,
-    apiSecret: process.env.CLOUD_API_SECRET
-  },
+  // cloudinary: {
+  //   // Cloudinary configuration options
+  //   cloudName: process.env.CLOUD_NAME,
+  //   apiKey: process.env.CLOUD_API_KEY,
+  //   apiSecret: process.env.CLOUD_API_SECRET
+  // },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
@@ -58,7 +58,7 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/cloudinary',
+    // '@nuxtjs/cloudinary',
   ],
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
