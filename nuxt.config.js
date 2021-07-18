@@ -47,9 +47,9 @@ export default {
 
   cloudinary: {
     // Cloudinary configuration options
-    cloudName: 'webgrower',
-    apiKey: '754465555736971',
-    apiSecret: '5wg-lvkornaLFcxhM4zy58ZLaIA'
+    cloudName: process.env.CLOUD_NAME,
+    apiKey: process.env.CLOUD_API_KEY,
+    apiSecret: process.env.CLOUD_API_SECRET
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
