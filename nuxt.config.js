@@ -41,7 +41,7 @@ export default {
   image: {
     provider: 'cloudinary',
     cloudinary: {
-      baseURL: 'https://res.cloudinary.com/webgrower/image/upload/uploads',
+      baseURL: 'https://res.cloudinary.com/webgrower/image/upload',
     },
   },
 
