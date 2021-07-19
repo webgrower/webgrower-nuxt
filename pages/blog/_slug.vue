@@ -14,9 +14,9 @@
     <header class="mb-20">
       <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
         <NuxtLink
-          :to="'/category/' + post.category"
+          :to="'/category/' + post.tags[0].slug"
           class="uppercase hover:underline"
-          >{{ post.category }}</NuxtLink
+          >{{ post.tags[0].name }}</NuxtLink
         >
       </div>
       <h1 class="article-title leading-5">{{ post.title }}</h1>
@@ -26,10 +26,10 @@
     <div v-html="post.html"></div>
     <footer>
       <!-- Prev/Next articles -->
-      <PrevNext :items="[prev, next]" />
+      <!-- <PrevNext :items="[prev, next]" /> -->
 
       <!-- Related articles -->
-      <RelatedArticles :items="related" />
+      <!-- <RelatedArticles :items="related" /> -->
     </footer>
   </article>
 </template>
@@ -38,37 +38,36 @@
 import Vue from 'vue'
 import CopyCode from '~/components/CopyCode.vue'
 // import PostMeta from '~/components/PostMeta.vue'
-import PrevNext from '~/components/PrevNext.vue'
-import RelatedArticles from '~/components/RelatedArticles.vue'
+// import PrevNext from '~/components/PrevNext.vue'
+// import RelatedArticles from '~/components/RelatedArticles.vue'
 import theme from '~/theme.config'
-import { getSinglePost } from '~/api/posts'
 
 export default Vue.extend({
   components: {
     // PostMeta,
-    PrevNext,
-    RelatedArticles,
+    // PrevNext,
+    // RelatedArticles,
   },
-  async asyncData({ $content, params }) {
-    // const post = await $content('blog', params.slug).fetch()
+  async asyncData({ app, params }) {
+    const post = await app.$ghost.posts.read(
+      {
+        slug: params.slug,
+      },
+      { include: 'tags' }
+    )
+    // const [prev, next] = await $content('blog')
+    //   .only(['title', 'description', 'cover', 'path'])
+    //   .sortBy('date', 'desc')
+    //   .surround(params.slug)
+    //   .fetch()
 
-    const post = await getSinglePost(params.slug)
+    // const related = await $content('blog')
+    //   .where({ category: post.category })
+    //   .limit(3)
+    //   .only(['title', 'cover', 'path'])
+    //   .fetch()
 
-    console.log(post)
-
-    const [prev, next] = await $content('blog')
-      .only(['title', 'description', 'cover', 'path'])
-      .sortBy('date', 'desc')
-      .surround(params.slug)
-      .fetch()
-
-    const related = await $content('blog')
-      .where({ category: post.category })
-      .limit(3)
-      .only(['title', 'cover', 'path'])
-      .fetch()
-
-    return { post, prev, next, related }
+    return { post }
   },
   head() {
     return {

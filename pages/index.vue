@@ -1,28 +1,25 @@
 <template>
-  <PostList :posts="ghostPosts" />
+  <PostList :posts="posts" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PostList from '~/components/PostList.vue'
-import { getPosts } from '~/api/posts'
 export default Vue.extend({
   components: {
     PostList,
   },
-  async asyncData({ $content, params }) {
-    const blog = await $content('blog', params.slug)
-      .sortBy('date', 'desc')
-      .fetch()
+  async asyncData({ app }) {
+    const posts = await app.$ghost.posts
+      .browse({
+        limit: 6,
+        include: ['tags'],
+      })
+      .catch((err: any) => {
+        console.error(err)
+      })
 
-    const ghostPosts = await getPosts()
-
-    console.log(ghostPosts)
-
-    return {
-      blog,
-      ghostPosts,
-    }
+    return { posts }
   },
 })
 </script>
