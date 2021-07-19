@@ -4,7 +4,7 @@
     <div
       v-for="item in prevNextItems"
       :key="item.path"
-      class="prev-next-item flex items-start relative mb-8"
+      class="prev-next-item flex relative mb-8"
     >
       <NuxtLink
         :to="item.path"
@@ -12,7 +12,8 @@
         ><NuxtPicture
           :src="item.cover"
           class="absolute rounded u-image blur-up ls-is-cached lazyloaded"
-          width="234"
+          width="250"
+          sizes="md:250px"
       /></NuxtLink>
 
       <div class="prev-next-body pl-6 flex-auto">
@@ -58,7 +59,7 @@ export default Vue.extend({
 })
 </script>
 
-<style scoped>
+<style>
 .prev-next-item {
   min-height: 10rem;
   overflow: hidden;

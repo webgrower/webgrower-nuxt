@@ -8,7 +8,7 @@
       dark:prose-dark
       text-left
       my-5
-      md:my-20
+      md:my-10
     "
   >
     <header class="mb-20">
@@ -26,6 +26,9 @@
     <footer>
       <!-- Prev/Next articles -->
       <PrevNext :items="[prev, next]" />
+
+      <!-- Related articles -->
+      <RelatedArticles :items="related" />
     </footer>
   </article>
 </template>
@@ -35,12 +38,14 @@ import Vue from 'vue'
 import CopyCode from '~/components/CopyCode.vue'
 import PostMeta from '~/components/PostMeta.vue'
 import PrevNext from '~/components/PrevNext.vue'
+import RelatedArticles from '~/components/RelatedArticles.vue'
 import theme from '~/theme.config'
 
 export default Vue.extend({
   components: {
     PostMeta,
     PrevNext,
+    RelatedArticles,
   },
   async asyncData({ $content, params }) {
     const post = await $content('blog', params.slug).fetch()
@@ -51,7 +56,13 @@ export default Vue.extend({
       .surround(params.slug)
       .fetch()
 
-    return { post, prev, next }
+    const related = await $content('blog')
+      .where({ category: post.category })
+      .limit(3)
+      .only(['title', 'cover', 'path'])
+      .fetch()
+
+    return { post, prev, next, related }
   },
   head() {
     return {
