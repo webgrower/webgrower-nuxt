@@ -28,15 +28,16 @@
     >
       <article :class="{ flex: index % 6 === 0 }">
         <PostImage
-          :src="post.cover"
+          v-if="post.feature_image"
+          :src="post.feature_image"
           class="border border-gray-300 bg-gray-200 relative"
         >
           <div class="absolute right-0 top-0">
             <NuxtLink
-              :to="'/category/' + post.category"
+              :to="'/category/' + post.tags[0].slug"
               class="post-category bg-blue-900 mt-3 mr-3"
             >
-              {{ post.category }}
+              {{ post.tags[0].name }}
             </NuxtLink>
           </div>
         </PostImage>
@@ -54,12 +55,12 @@
           >
             <NuxtLink
               class="dark:text-gray-300 dark:hover:text-white"
-              :to="post.path"
+              :to="'/blog/' + post.slug"
               >{{ post.title }}</NuxtLink
             >
           </h2>
           <p class="post-description mb-5 text-lg leading-normal text-gray-500">
-            {{ post.description }}
+            {{ post.excerpt }}
           </p>
         </div>
       </article>

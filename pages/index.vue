@@ -1,10 +1,11 @@
 <template>
-  <PostList :posts="blog" />
+  <PostList :posts="ghostPosts" />
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PostList from '~/components/PostList.vue'
+import { getPosts } from '~/api/posts'
 export default Vue.extend({
   components: {
     PostList,
@@ -14,8 +15,13 @@ export default Vue.extend({
       .sortBy('date', 'desc')
       .fetch()
 
+    const ghostPosts = await getPosts()
+
+    console.log(ghostPosts)
+
     return {
       blog,
+      ghostPosts,
     }
   },
 })

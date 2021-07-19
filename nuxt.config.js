@@ -39,10 +39,10 @@ export default {
   ],
 
   image: {
-    provider: 'cloudinary',
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/webgrower/image/upload/blog',
-    },
+    // provider: 'cloudinary',
+    // cloudinary: {
+    //   baseURL: 'https://res.cloudinary.com/webgrower/image/upload/blog',
+    // },
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

@@ -20,9 +20,10 @@
         >
       </div>
       <h1 class="article-title leading-5">{{ post.title }}</h1>
-      <PostMeta :date="post.date" :reading-time="post.readingTime" />
+      <!-- <PostMeta :date="post.date" :reading-time="post.readingTime" /> -->
     </header>
-    <nuxt-content :document="post" />
+    <!-- <nuxt-content :document="post" /> -->
+    <div v-html="post.html"></div>
     <footer>
       <!-- Prev/Next articles -->
       <PrevNext :items="[prev, next]" />
@@ -36,19 +37,24 @@
 <script>
 import Vue from 'vue'
 import CopyCode from '~/components/CopyCode.vue'
-import PostMeta from '~/components/PostMeta.vue'
+// import PostMeta from '~/components/PostMeta.vue'
 import PrevNext from '~/components/PrevNext.vue'
 import RelatedArticles from '~/components/RelatedArticles.vue'
 import theme from '~/theme.config'
+import { getSinglePost } from '~/api/posts'
 
 export default Vue.extend({
   components: {
-    PostMeta,
+    // PostMeta,
     PrevNext,
     RelatedArticles,
   },
   async asyncData({ $content, params }) {
-    const post = await $content('blog', params.slug).fetch()
+    // const post = await $content('blog', params.slug).fetch()
+
+    const post = await getSinglePost(params.slug)
+
+    console.log(post)
 
     const [prev, next] = await $content('blog')
       .only(['title', 'description', 'cover', 'path'])
