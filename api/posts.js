@@ -2,8 +2,8 @@ import GhostContentAPI from '@tryghost/content-api'
 
 // Create API instance with site credentials
 const api = new GhostContentAPI({
-  url: 'http://localhost:2368',
-  key: '12069867494a81952db8947b68',
+  url: 'http://' + process.env.ADMIN_HOST_IP,
+  key: process.env.ADMIN_CONTENT_KEY,
   version: 'v3',
 })
 
