@@ -48,10 +48,23 @@ export default {
   ],
 
   image: {
-    domains: ['http://31.135.64.110:2368', 'https://images.unsplash.com'],
-    provider: 'cloudinary',
-    cloudinary: {
-      baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',
+    domains: [
+      'http://31.135.64.110:2368',
+      'https://images.unsplash.com',
+      'res-2.cloudinary.com',
+    ],
+    // provider: 'cloudinary',
+    // cloudinary: {
+    //   baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',
+    // },
+    presets: {
+      cover: {
+        modifiers: {
+          format: 'webp',
+          width: 600,
+          height: 297,
+        },
+      },
     },
   },
 

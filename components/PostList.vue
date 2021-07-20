@@ -31,6 +31,10 @@
           v-if="post.feature_image"
           :src="post.feature_image"
           class="border border-gray-300 bg-gray-200 relative"
+          preset="cover"
+          sizes="md:600px"
+          width="600"
+          height="297"
         >
           <div class="absolute right-0 top-0">
             <NuxtLink
