@@ -29,10 +29,21 @@ export default {
   plugins: [],
 
   features: {
+    router: false, // not implemented
     store: false,
+    layouts: true,
+    meta: true,
     middleware: false,
-    fetch: false,
+    transitions: false,
+    deprecations: false,
     validate: false,
+    asyncData: true,
+    fetch: false,
+    clientOnline: false,
+    clientPrefetch: false,
+    clientUseUrl: false, // this is a bit of an odd one, but using URL should eg be ok for modern mode already
+    componentAliases: false,
+    componentClientOnly: false,
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
