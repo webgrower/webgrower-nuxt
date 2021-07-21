@@ -28,24 +28,6 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
-  features: {
-    router: false, // not implemented
-    store: false,
-    layouts: true,
-    meta: true,
-    middleware: false,
-    transitions: false,
-    deprecations: false,
-    validate: false,
-    asyncData: true,
-    fetch: false,
-    clientOnline: false,
-    clientPrefetch: false,
-    clientUseUrl: false, // this is a bit of an odd one, but using URL should eg be ok for modern mode already
-    componentAliases: false,
-    componentClientOnly: false,
-  },
-
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
@@ -70,11 +52,12 @@ export default {
       'http://31.135.64.110:2368',
       'https://images.unsplash.com',
       'res-2.cloudinary.com',
+      'res-4.cloudinary.com',
     ],
-    // provider: 'cloudinary',
-    // cloudinary: {
-    //   baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',
-    // },
+    provider: 'cloudinary',
+    cloudinary: {
+      baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',
+    },
     presets: {
       cover: {
         modifiers: {
