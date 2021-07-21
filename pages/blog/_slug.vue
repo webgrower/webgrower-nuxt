@@ -56,8 +56,6 @@ export default Vue.extend({
       { include: 'tags' }
     )
 
-    console.log(post.html)
-
     // const [prev, next] = await $content('blog')
     //   .only(['title', 'description', 'cover', 'path'])
     //   .sortBy('date', 'desc')
