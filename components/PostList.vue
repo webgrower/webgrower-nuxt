@@ -41,7 +41,7 @@
         </PostImage>
         <div
           :class="[
-            { 'lg:pt-0': index % 6 === 0 },
+            { 'lg:pt-0 lg:pl-8': index % 6 === 0 },
             'pt-5 content overflow-hidden',
           ]"
         >
@@ -122,7 +122,6 @@ export default Vue.extend({
 
   .post-card-lg div {
     flex-basis: 34.33%;
-    padding-left: 2rem;
   }
 
   .post-card-lg figure {
