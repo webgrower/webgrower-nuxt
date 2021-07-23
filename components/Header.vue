@@ -1,19 +1,9 @@
 <template>
   <header
-    class="
-      py-6
-      md:space-x-10
-      header
-      bg-white
-      dark:bg-black
-      grid grid-cols-main
-      sticky
-      top-0
-      z-20
-    "
+    class="py-6 md:space-x-10 header bg-white dark:bg-black sticky top-0 z-20"
     aria-label="Header with menu"
   >
-    <nav class="flex items-center w-full header-nav">
+    <nav class="flex items-center w-full container mx-auto px-4">
       <div class="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
         <div class="flex items-center justify-between w-full md:w-auto">
           <NuxtLink class="order-2 md:order-1 flex items-center -mt-1" to="/">
@@ -134,47 +124,21 @@
                   justify-center
                 "
               >
-                <NuxtLink
-                  to="/blog"
-                  class="
-                    text-4xl
-                    font-bold
-                    text-gray-900
-                    hover:text-gray-700
-                    dark:text-gray-300
-                  "
-                  @click.native="showMenu = false"
-                >
-                  Blog
-                </NuxtLink>
-
-                <NuxtLink
-                  to="/work"
-                  class="
-                    text-4xl
-                    font-bold
-                    text-gray-900
-                    hover:text-gray-700
-                    dark:text-gray-300
-                  "
-                  @click.native="showMenu = false"
-                >
-                  Work
-                </NuxtLink>
-
-                <NuxtLink
-                  to="/about"
-                  class="
-                    text-4xl
-                    font-bold
-                    text-gray-900
-                    hover:text-gray-700
-                    dark:text-gray-300
-                  "
-                  @click.native="showMenu = false"
-                >
-                  About
-                </NuxtLink>
+                <div v-for="item in nav" :key="item.href">
+                  <NuxtLink
+                    :to="item.href"
+                    class="
+                      text-4xl
+                      font-bold
+                      text-gray-900
+                      hover:text-gray-700
+                      dark:text-gray-300
+                    "
+                    @click.native="showMenu = false"
+                  >
+                    {{ item.title }}
+                  </NuxtLink>
+                </div>
               </div>
             </div>
           </div>
@@ -197,16 +161,8 @@ export default Vue.extend({
     return {
       nav: [
         {
-          href: '/blog',
-          title: 'Blog',
-        },
-        {
-          href: '/work',
-          title: 'Work',
-        },
-        {
           href: '/about',
-          title: 'About',
+          title: 'О проекте',
         },
       ],
       showMenu: false,
@@ -218,7 +174,6 @@ export default Vue.extend({
 
 <style scoped>
 .header {
-  grid-column: full-start/full-end;
   box-shadow: 0 0 3px rgb(0 0 0 / 3%), 0 3px 46px rgb(0 0 0 / 7%);
 }
 
@@ -232,7 +187,6 @@ export default Vue.extend({
   font-weight: bold;
 }
 
-.header-nav,
 .menu {
   grid-column: wide-start/wide-end;
 }

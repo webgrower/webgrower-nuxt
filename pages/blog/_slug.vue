@@ -23,7 +23,7 @@
       <!-- <PostMeta :date="post.date" :reading-time="post.readingTime" /> -->
     </header>
     <!-- <nuxt-content :document="post" /> -->
-    <div v-html="getOptimizedHtml(post.html)"></div>
+    <div v-html="post.html"></div>
     <footer>
       <!-- Prev/Next articles -->
       <!-- <PrevNext :items="[prev, next]" /> -->
@@ -96,22 +96,10 @@ export default Vue.extend({
       }
     }, 100)
   },
-  methods: {
-    getOptimizedHtml(html) {
-      return html.replaceAll(
-        'http://31.135.64.110:2368',
-        'https://res.cloudinary.com/webgrower/image/fetch/f_auto,q_auto/http://31.135.64.110:2368/'
-      )
-    },
-  },
 })
 </script>
 
 <style scoped>
-.article {
-  grid-column: wide-start/wide-end;
-}
-
 @screen sm {
   .article {
     margin-left: auto;
@@ -119,9 +107,7 @@ export default Vue.extend({
   }
 }
 
-@screen lg {
-  .article {
-    grid-column: main-start/main-end;
-  }
+.article-title {
+  line-height: 1.25;
 }
 </style>

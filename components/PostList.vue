@@ -1,40 +1,34 @@
 <template>
   <section
-    class="
-      post-list
-      w-full
-      text-left
-      my-5
-      md:my-20
-      flex flex-wrap flex-col
-      lg:flex-row
-    "
+    class="post-list w-full text-left my-5 md:my-10 flex flex-wrap flex-row"
   >
     <!-- 
     |     Main post      |
     | Post | Post | Post |
     |   Post  |   Post   |
-   -->
+     -->
     <div
       v-for="(post, index) in posts"
       :key="post.slug"
       :class="[
-        { 'post-card-lg': index % 6 === 0 },
-        { 'post-card-md': index % 5 === 0 },
-        { 'post-card-md': index % 4 === 0 },
-        'post-card',
+        { 'post-card-md lg:post-card-lg': index % 6 === 0 },
+        {
+          'sm:post-card-md lg:post-card-md':
+            index > 0 && (index % 4 === 0 || index % 5 === 0),
+        },
+        'post-card-lg',
+        'sm:post-card-md',
+        'md:post-card-md',
+        'lg:post-card',
+        'px-4',
         'mb-10',
       ]"
     >
-      <article :class="{ flex: index % 6 === 0 }">
+      <article :class="{ 'lg:flex': index % 6 === 0 }">
         <PostImage
-          v-if="post.feature_image"
           :src="post.feature_image"
           class="border border-gray-300 bg-gray-200 relative"
-          preset="cover"
-          sizes="md:600px"
-          width="600"
-          height="297"
+          sizes="xs:320px,sm:640px,md:768px,lg:1024px,xl:1280px"
         >
           <div class="absolute right-0 top-0">
             <NuxtLink
@@ -45,15 +39,22 @@
             </NuxtLink>
           </div>
         </PostImage>
-        <div class="content pt-5">
+        <div
+          :class="[
+            { 'lg:pt-0': index % 6 === 0 },
+            'pt-5 content overflow-hidden',
+          ]"
+        >
           <!-- <div class="text-base text-gray-500 dark:text-gray-400 mb-2">
             {{ formatDate(post.date) }}
           </div> -->
           <h2
             :class="[
-              { 'text-4xl': index % 6 === 0 },
-              { 'text-3xl': index % 5 === 0 },
-              { 'text-3xl': index % 4 === 0 },
+              { 'lg:text-4xl': index % 6 === 0 },
+              {
+                'lg:text-3xl':
+                  index > 0 && (index % 4 === 0 || index % 5 === 0),
+              },
               'text-2xl mb-3 font-bold leading-tight',
             ]"
           >
@@ -101,37 +102,33 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.post-list {
-  grid-column: wide-start/wide-end;
-}
+@responsive {
+  .post-card {
+    flex: 0 33.333%;
+    max-width: 33.333%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 
-.post-card {
-  flex: 0 33.333%;
-  max-width: 33.333%;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
+  .post-card-md {
+    flex: 0 50%;
+    max-width: 50%;
+  }
 
-.post-card-md {
-  flex: 0 50%;
-  max-width: 50%;
-}
+  .post-card-lg {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 
-.post-card-lg {
-  flex: 0 0 100%;
-  max-width: 100%;
-}
+  .post-card-lg div {
+    flex-basis: 34.33%;
+    padding-left: 2rem;
+  }
 
-.post-card-lg .content {
-  flex-basis: 34.33%;
-  padding-top: 0;
-  padding-left: 2rem;
-}
-
-.post-card-lg figure {
-  flex: 1 1 auto;
-  height: auto;
-  min-height: 380px;
+  .post-card-lg figure {
+    flex: 1 1 auto;
+    height: auto;
+  }
 }
 
 .post-category {

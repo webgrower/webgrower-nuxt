@@ -48,12 +48,7 @@ export default {
   ],
 
   image: {
-    domains: [
-      'http://31.135.64.110:2368',
-      'https://images.unsplash.com',
-      'res-2.cloudinary.com',
-      'res-4.cloudinary.com',
-    ],
+    domains: ['http://31.135.64.110:2368', 'https://images.unsplash.com'],
     provider: 'cloudinary',
     cloudinary: {
       baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',

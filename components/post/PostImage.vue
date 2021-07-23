@@ -2,11 +2,13 @@
   <figure :class="{ 'full-image': mode === 'full' }">
     <div class="picture">
       <NuxtPicture
+        v-if="src"
         :preset="preset"
         :src="src"
         :sizes="sizes"
         :width="width"
         :height="height"
+        loading="lazy"
       />
     </div>
     <figcaption v-if="caption" class="figcaption">{{ caption }}</figcaption>
@@ -32,6 +34,8 @@ export default Vue.extend({
 
 .picture {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .picture::before {
@@ -54,6 +58,7 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 
 .figcaption {
