@@ -12,6 +12,7 @@
         justify-between
         space-y-reverse space-y-3
         container
+        px-4
       "
     >
       <div class="text-sm md:text-base leading-6 text-center text-gray-400">

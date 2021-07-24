@@ -14,9 +14,10 @@
     <header class="mb-20">
       <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
         <NuxtLink
-          :to="'/category/' + post.tags[0].slug"
+          v-if="post.tags && post.tags[0]"
+          :to="'/category/' + category.slug"
           class="uppercase hover:underline"
-          >{{ post.tags[0].name }}</NuxtLink
+          >{{ category.name }}</NuxtLink
         >
       </div>
       <h1 class="article-title leading-5">{{ post.title }}</h1>
@@ -82,6 +83,15 @@ export default Vue.extend({
         },
       ],
     }
+  },
+  computed: {
+    category() {
+      if (!this.post.tags) {
+        return
+      }
+
+      return this.post.tags[0]
+    },
   },
   mounted() {
     setTimeout(() => {
