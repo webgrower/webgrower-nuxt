@@ -23,11 +23,10 @@
       <h1 class="article-title leading-5">{{ post.title }}</h1>
       <!-- <PostMeta :date="post.date" :reading-time="post.readingTime" /> -->
     </header>
-    <!-- <nuxt-content :document="post" /> -->
     <div v-html="post.html"></div>
     <footer>
       <!-- Prev/Next articles -->
-      <!-- <PrevNext :items="[prev, next]" /> -->
+      <PrevNext :items="[prevPost, nextPost]" />
 
       <!-- Related articles -->
       <!-- <RelatedArticles :items="related" /> -->
@@ -39,14 +38,14 @@
 import Vue from 'vue'
 import CopyCode from '~/components/CopyCode.vue'
 // import PostMeta from '~/components/PostMeta.vue'
-// import PrevNext from '~/components/PrevNext.vue'
+import PrevNext from '~/components/PrevNext.vue'
 // import RelatedArticles from '~/components/RelatedArticles.vue'
 import theme from '~/theme.config'
 
 export default Vue.extend({
   components: {
     // PostMeta,
-    // PrevNext,
+    PrevNext,
     // RelatedArticles,
   },
   async asyncData({ app, params }) {
@@ -57,11 +56,34 @@ export default Vue.extend({
       { include: 'tags' }
     )
 
-    // const [prev, next] = await $content('blog')
-    //   .only(['title', 'description', 'cover', 'path'])
-    //   .sortBy('date', 'desc')
-    //   .surround(params.slug)
-    //   .fetch()
+    // Format date string for query into `YYYY-MM-DD`
+    const formatDate = (str) => {
+      return new Date(str).toISOString().replace('T', ' ')
+    }
+
+    const postPublishedDate = formatDate(post.published_at)
+
+    // Get next posts
+    const nextPosts = await app.$ghost.posts.browse({
+      order: 'published_at ASC',
+      filter: `published_at:>'${postPublishedDate}'`,
+      limit: 1,
+    })
+
+    // Get prev posts
+    const prevPosts = await app.$ghost.posts.browse({
+      order: 'published_at DESC',
+      filter: `published_at:<'${postPublishedDate}'`,
+      limit: 2,
+    })
+
+    // Get prev or next post to show
+    const getPost = (posts) => {
+      return posts.filter((item) => item.slug && item.slug !== post.slug)[0]
+    }
+
+    const prevPost = getPost(prevPosts)
+    const nextPost = getPost(nextPosts)
 
     // const related = await $content('blog')
     //   .where({ category: post.category })
@@ -69,7 +91,7 @@ export default Vue.extend({
     //   .only(['title', 'cover', 'path'])
     //   .fetch()
 
-    return { post }
+    return { post, prevPost, nextPost }
   },
   head() {
     return {

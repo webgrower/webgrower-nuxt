@@ -13,6 +13,7 @@ export default Vue.extend({
     const posts = await app.$ghost.posts
       .browse({
         limit: 6,
+        order: 'published_at DESC',
         include: ['tags'],
       })
       .catch((err: any) => {
