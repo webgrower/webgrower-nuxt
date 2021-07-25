@@ -45,9 +45,9 @@
             'pt-5 content overflow-hidden',
           ]"
         >
-          <!-- <div class="text-base text-gray-500 dark:text-gray-400 mb-2">
-            {{ formatDate(post.date) }}
-          </div> -->
+          <div class="text-base text-gray-500 dark:text-gray-400 mb-2">
+            {{ formatDate(post.published_at) }}
+          </div>
           <h2
             :class="[
               { 'lg:text-4xl': index % 6 === 0 },
@@ -95,7 +95,7 @@ export default Vue.extend({
         month: 'long',
         day: 'numeric',
       }
-      return new Date(date).toLocaleDateString('en', options)
+      return new Date(date).toLocaleDateString('ru', options)
     },
   },
 })
