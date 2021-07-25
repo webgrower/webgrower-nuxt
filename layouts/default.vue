@@ -21,12 +21,13 @@ export default Vue.extend({
     Footer,
   },
   head: {
-    title: theme.siteName,
+    title: `${theme.siteName} – ${theme.siteDescription}`,
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Nikita Makhov, front-end engineer from Russia, Moscow',
+        content:
+          'Webgrower.ru - почти ежедневный журнал про веб-разработку и полезные инструменты',
       },
     ],
     bodyAttrs: {
