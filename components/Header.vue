@@ -13,8 +13,7 @@
               flex
               items-center
               -mt-1
-              text-gray-500
-              dark:text-gray-300
+              dark:text-white
               hover:text-gray-900
               dark:hover:text-white
             "
