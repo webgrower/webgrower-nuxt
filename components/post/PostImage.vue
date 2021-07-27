@@ -1,7 +1,15 @@
 <template>
   <figure :class="{ 'full-image': mode === 'full' }">
     <div class="picture">
-      <nuxt-picture :src="src" />
+      <NuxtPicture
+        v-if="src"
+        :preset="preset"
+        :src="src"
+        :sizes="sizes"
+        :width="width"
+        :height="height"
+        loading="lazy"
+      />
     </div>
     <figcaption v-if="caption" class="figcaption">{{ caption }}</figcaption>
     <!-- This is temporary -->
@@ -12,7 +20,7 @@
 <script>
 import Vue from 'vue'
 export default Vue.extend({
-  props: ['src', 'caption', 'mode'],
+  props: ['src', 'caption', 'mode', 'preset', 'sizes', 'width', 'height'],
 })
 </script>
 
@@ -26,6 +34,8 @@ export default Vue.extend({
 
 .picture {
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .picture::before {
@@ -48,6 +58,7 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
 }
 
 .figcaption {

@@ -1,9 +1,10 @@
 <template>
   <!-- Foooter -->
-  <footer class="footer border-t border-gray-200 dark:border-gray-600">
+  <footer
+    class="footer border-t border-gray-200 dark:border-darker dark:bg-darker"
+  >
     <div
       class="
-        max-w-screen-xl
         py-6
         md:py-12
         mx-auto
@@ -12,6 +13,8 @@
         md:flex-row
         justify-between
         space-y-reverse space-y-3
+        container
+        px-4
       "
     >
       <div class="text-sm md:text-base leading-6 text-center text-gray-400">
@@ -105,7 +108,6 @@ export default Vue.extend({
 
 <style scoped>
 .footer {
-  grid-column: wide-start/wide-end;
   margin-top: auto;
 }
 </style>

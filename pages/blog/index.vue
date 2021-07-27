@@ -1,5 +1,5 @@
 <template>
-  <PostList :posts="blog" />
+  <PostList :posts="posts" />
 </template>
 
 <script lang="ts">
@@ -11,14 +11,17 @@ export default Vue.extend({
   components: {
     PostList,
   },
-  async asyncData({ $content, params }) {
-    const blog = await $content('blog', params.slug)
-      .sortBy('date', 'desc')
-      .fetch()
+  async asyncData({ app }) {
+    const posts = await app.$ghost.posts
+      .browse({
+        limit: 6,
+        include: ['tags'],
+      })
+      .catch((err: any) => {
+        console.error(err)
+      })
 
-    return {
-      blog,
-    }
+    return { posts }
   },
   head: {
     title: theme.siteName,

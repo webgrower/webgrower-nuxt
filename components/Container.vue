@@ -1,11 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mx-auto px-4">
     <slot />
   </div>
 </template>
-
-<style scoped>
-.container {
-  grid-column: wide-start/wide-end;
-}
-</style>

@@ -2,6 +2,15 @@ export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
 
+  // publicRuntimeConfig: {},
+  privateRuntimeConfig: {
+    ADMIN_HOST_IP: process.env.ADMIN_HOST_IP,
+    ADMIN_CONTENT_KEY: process.env.ADMIN_CONTENT_KEY,
+    CLOUD_NAME: process.env.CLOUD_NAME,
+    CLOUD_API_KEY: process.env.CLOUD_API_KEY,
+    CLOUD_API_SECRET: process.env.CLOUD_API_SECRET,
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'defite-nuxt-blog',
@@ -39,9 +48,19 @@ export default {
   ],
 
   image: {
+    domains: ['http://31.135.64.110:2368', 'https://images.unsplash.com'],
     provider: 'cloudinary',
     cloudinary: {
-      baseURL: 'https://res.cloudinary.com/webgrower/image/upload/blog',
+      baseURL: 'https://res.cloudinary.com/webgrower/image/fetch/',
+    },
+    presets: {
+      cover: {
+        modifiers: {
+          format: 'webp',
+          width: 600,
+          height: 297,
+        },
+      },
     },
   },
 
@@ -51,7 +70,26 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
+    'nuxt-ghost',
   ],
+
+  ghost: {
+    /**
+     * Your Ghost url
+     */
+    url: process.env.ADMIN_HOST_IP,
+
+    /**
+     * Your content api key
+     */
+    key: process.env.ADMIN_CONTENT_KEY,
+
+    /**
+     * Version
+     * default: v4
+     */
+    version: 'v4',
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

@@ -1,9 +1,7 @@
 <template>
-  <div class="default grid grid-cols-main">
+  <div class="default">
     <Header />
-    <Container>
-      <Nuxt />
-    </Container>
+    <Nuxt />
     <Footer />
   </div>
 </template>
@@ -11,22 +9,21 @@
 <script lang="ts">
 import Vue from 'vue'
 import Header from '~/components/Header.vue'
-import Container from '~/components/Container.vue'
 import Footer from '~/components/Footer.vue'
 import theme from '~/theme.config'
 export default Vue.extend({
   components: {
     Header,
-    Container,
     Footer,
   },
   head: {
-    title: theme.siteName,
+    title: `${theme.siteName} – ${theme.siteDescription}`,
     meta: [
       {
         hid: 'description',
         name: 'description',
-        content: 'Nikita Makhov, front-end engineer from Russia, Moscow',
+        content:
+          'Webgrower.ru - почти ежедневный журнал про веб-разработку и полезные инструменты',
       },
     ],
     bodyAttrs: {

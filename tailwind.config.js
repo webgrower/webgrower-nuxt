@@ -5,9 +5,14 @@ module.exports = {
       colors: {
         links: '#88C0D0',
         dark: '#111',
+        darker: '#141414',
+        lightdark: '#131212',
+        'gray-150': '#f8fafc',
       },
       gridTemplateColumns: {
-        main: '[full-start] 1fr [wide-start] 1fr [main-start]  repeat(8, 1fr) [main-end] 1fr [wide-end] 1fr [full-end]',
+        'main-lg':
+          '[full-start] 1fr [wide-start] 1fr [main-start]  repeat(8, 1fr) [main-end] 1fr [wide-end] 1fr [full-end]',
+        main: '[full-start] 0.5fr [wide-start] 1fr [main-start]  repeat(9, 1fr) [main-end] 1fr [wide-end] 0.5fr [full-end]',
       },
       typography(theme) {
         return {
