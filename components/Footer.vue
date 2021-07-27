@@ -1,6 +1,8 @@
 <template>
   <!-- Foooter -->
-  <footer class="footer border-t border-gray-200 dark:border-gray-600">
+  <footer
+    class="footer border-t border-gray-200 dark:border-darker dark:bg-darker"
+  >
     <div
       class="
         py-6

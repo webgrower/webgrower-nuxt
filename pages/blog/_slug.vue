@@ -1,37 +1,39 @@
 <template>
-  <article
-    class="
-      article
-      prose
-      sm:prose-sm
-      lg:prose-lg
-      dark:prose-dark
-      text-left
-      my-5
-      md:my-10
-    "
-  >
-    <header class="mb-20">
-      <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
-        <NuxtLink
-          v-if="post.tags && post.tags[0]"
-          :to="'/category/' + category.slug"
-          class="uppercase hover:underline"
-          >{{ category.name }}</NuxtLink
-        >
-      </div>
-      <h1 class="article-title leading-5">{{ post.title }}</h1>
-      <!-- <PostMeta :date="post.date" :reading-time="post.readingTime" /> -->
-    </header>
-    <div v-html="post.html"></div>
-    <footer>
-      <!-- Prev/Next articles -->
-      <PrevNext :items="[prevPost, nextPost]" />
+  <div>
+    <article
+      class="
+        article
+        prose
+        sm:prose-sm
+        lg:prose-lg
+        dark:prose-dark
+        text-left
+        my-5
+        md:my-10
+      "
+    >
+      <header class="mb-20">
+        <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
+          <NuxtLink
+            v-if="post.tags && post.tags[0]"
+            :to="'/category/' + category.slug"
+            class="uppercase hover:underline"
+            >{{ category.name }}</NuxtLink
+          >
+        </div>
+        <h1 class="article-title leading-5">{{ post.title }}</h1>
+        <!-- <PostMeta :date="post.date" :reading-time="post.readingTime" /> -->
+      </header>
+      <div v-html="post.html"></div>
+      <footer>
+        <!-- Prev/Next articles -->
+        <PrevNext :items="[prevPost, nextPost]" />
+      </footer>
+    </article>
 
-      <!-- Related articles -->
-      <!-- <RelatedArticles :items="related" /> -->
-    </footer>
-  </article>
+    <!-- Related articles -->
+    <RelatedArticles v-if="relatedPosts.length" :items="relatedPosts" />
+  </div>
 </template>
 
 <script>
@@ -39,14 +41,14 @@ import Vue from 'vue'
 import CopyCode from '~/components/CopyCode.vue'
 // import PostMeta from '~/components/PostMeta.vue'
 import PrevNext from '~/components/PrevNext.vue'
-// import RelatedArticles from '~/components/RelatedArticles.vue'
+import RelatedArticles from '~/components/RelatedArticles.vue'
 import theme from '~/theme.config'
 
 export default Vue.extend({
   components: {
     // PostMeta,
     PrevNext,
-    // RelatedArticles,
+    RelatedArticles,
   },
   async asyncData({ app, params }) {
     const post = await app.$ghost.posts.read(
@@ -85,13 +87,17 @@ export default Vue.extend({
     const prevPost = getPost(prevPosts)
     const nextPost = getPost(nextPosts)
 
-    // const related = await $content('blog')
-    //   .where({ category: post.category })
-    //   .limit(3)
-    //   .only(['title', 'cover', 'path'])
-    //   .fetch()
+    // Get data for related block
+    const relatedPostsData = await app.$ghost.posts.browse({
+      filter: `tag:${post.tags[0].slug}`,
+      limit: 3,
+    })
 
-    return { post, prevPost, nextPost }
+    const relatedPosts = relatedPostsData.filter(
+      (item) => item.slug && item.slug !== post.slug
+    )
+
+    return { post, prevPost, nextPost, relatedPosts }
   },
   head() {
     return {

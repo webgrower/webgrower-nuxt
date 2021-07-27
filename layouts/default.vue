@@ -1,9 +1,7 @@
 <template>
   <div class="default">
     <Header />
-    <Container>
-      <Nuxt />
-    </Container>
+    <Nuxt />
     <Footer />
   </div>
 </template>
@@ -11,13 +9,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import Header from '~/components/Header.vue'
-import Container from '~/components/Container.vue'
 import Footer from '~/components/Footer.vue'
 import theme from '~/theme.config'
 export default Vue.extend({
   components: {
     Header,
-    Container,
     Footer,
   },
   head: {

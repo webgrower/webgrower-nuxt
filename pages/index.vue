@@ -1,12 +1,16 @@
 <template>
-  <PostList :posts="posts" />
+  <Container>
+    <PostList :posts="posts" />
+  </Container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import Container from '~/components/Container.vue'
 import PostList from '~/components/PostList.vue'
 export default Vue.extend({
   components: {
+    Container,
     PostList,
   },
   async asyncData({ app }) {

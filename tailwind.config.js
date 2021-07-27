@@ -5,6 +5,8 @@ module.exports = {
       colors: {
         links: '#88C0D0',
         dark: '#111',
+        darker: '#141414',
+        lightdark: '#131212',
       },
       gridTemplateColumns: {
         'main-lg':
