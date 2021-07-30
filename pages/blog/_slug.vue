@@ -10,6 +10,9 @@
         text-left
         my-5
         md:my-10
+        container
+        mx-auto
+        px-4
       "
     >
       <header class="mb-20">
