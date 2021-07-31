@@ -1,81 +1,87 @@
 <template>
-  <section
-    class="post-list w-full text-left my-5 md:my-10 flex flex-wrap flex-row"
-  >
-    <!-- 
+  <div>
+    <div
+      class="post-list w-full text-left my-5 md:my-10 flex flex-wrap flex-row"
+    >
+      <!-- 
     |     Main post      |
     | Post | Post | Post |
     |   Post  |   Post   |
      -->
-    <div
-      v-for="(post, index) in posts"
-      :key="post.slug"
-      :class="[
-        { 'post-card-md lg:post-card-lg': index % 6 === 0 },
-        {
-          'sm:post-card-md lg:post-card-md':
-            index > 0 && (index % 4 === 0 || index % 5 === 0),
-        },
-        'post-card-lg',
-        'sm:post-card-md',
-        'md:post-card-md',
-        'lg:post-card',
-        'px-4',
-        'mb-10',
-      ]"
-    >
-      <article :class="{ 'lg:flex': index % 6 === 0 }">
-        <PostImage
-          :src="post.feature_image"
-          class="border border-gray-300 bg-gray-200 relative"
-          sizes="xs:320px,sm:640px,md:768px,lg:1024px,xl:1280px"
-        >
-          <div class="absolute right-0 top-0">
-            <NuxtLink
-              :to="'/category/' + post.tags[0].slug"
-              class="post-category bg-blue-900 mt-3 mr-3"
-            >
-              {{ post.tags[0].name }}
-            </NuxtLink>
-          </div>
-        </PostImage>
-        <div
-          :class="[
-            { 'lg:pt-0 lg:pl-8': index % 6 === 0 },
-            'pt-5 content overflow-hidden',
-          ]"
-        >
-          <div class="text-base text-gray-500 dark:text-gray-400 mb-2">
-            {{ formatDate(post.published_at) }}
-          </div>
-          <h2
+      <div
+        v-for="(post, index) in posts"
+        :key="post.slug"
+        :class="[
+          { 'post-card-md lg:post-card-lg': index % 6 === 0 },
+          {
+            'sm:post-card-md lg:post-card-md':
+              index > 0 && (index % 4 === 0 || index % 5 === 0),
+          },
+          'post-card-lg',
+          'sm:post-card-md',
+          'md:post-card-md',
+          'lg:post-card',
+          'px-4',
+          'mb-10',
+        ]"
+      >
+        <article :class="{ 'lg:flex': index % 6 === 0 }">
+          <PostImage
+            :src="post.feature_image"
+            class="border border-gray-300 bg-gray-200 relative"
+            sizes="xs:320px,sm:640px,md:768px,lg:1024px,xl:1280px"
+          >
+            <div class="absolute right-0 top-0">
+              <NuxtLink
+                :to="'/category/' + post.tags[0].slug"
+                class="post-category bg-blue-900 mt-3 mr-3"
+              >
+                {{ post.tags[0].name }}
+              </NuxtLink>
+            </div>
+          </PostImage>
+          <div
             :class="[
-              { 'lg:text-4xl': index % 6 === 0 },
-              {
-                'lg:text-3xl':
-                  index > 0 && (index % 4 === 0 || index % 5 === 0),
-              },
-              'text-2xl mb-3 font-bold leading-tight',
+              { 'lg:pt-0 lg:pl-8': index % 6 === 0 },
+              'pt-5 content overflow-hidden',
             ]"
           >
-            <NuxtLink
-              class="dark:text-gray-300 dark:hover:text-white"
-              :to="'/blog/' + post.slug"
-              >{{ post.title }}</NuxtLink
+            <div class="text-base text-gray-500 dark:text-gray-400 mb-2">
+              {{ formatDate(post.published_at) }}
+            </div>
+            <h2
+              :class="[
+                { 'lg:text-4xl': index % 6 === 0 },
+                {
+                  'lg:text-3xl':
+                    index > 0 && (index % 4 === 0 || index % 5 === 0),
+                },
+                'text-2xl mb-3 font-bold leading-tight',
+              ]"
             >
-          </h2>
-          <p class="post-description mb-5 text-lg leading-normal text-gray-500">
-            {{ post.excerpt }}
-          </p>
-        </div>
-      </article>
+              <NuxtLink
+                class="dark:text-gray-300 dark:hover:text-white"
+                :to="'/blog/' + post.slug"
+                >{{ post.title }}</NuxtLink
+              >
+            </h2>
+            <p
+              class="post-description mb-5 text-lg leading-normal text-gray-500"
+            >
+              {{ post.excerpt }}
+            </p>
+          </div>
+        </article>
+      </div>
     </div>
-  </section>
+    <Pagination v-if="pagination" :pagination="pagination" />
+  </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PostImage from '~/components/post/PostImage.vue'
+import Pagination from '~/components/Pagination.vue'
 
 interface IDateOptions {
   year: 'numeric' | '2-digit'
@@ -86,8 +92,9 @@ interface IDateOptions {
 export default Vue.extend({
   components: {
     PostImage,
+    Pagination,
   },
-  props: ['posts'],
+  props: ['posts', 'pagination'],
   methods: {
     formatDate(date: string) {
       const options: IDateOptions = {

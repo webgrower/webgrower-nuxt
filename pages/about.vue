@@ -19,8 +19,9 @@
   </article>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
+import theme from '~/theme.config'
 export default Vue.extend({
   async asyncData({ app }) {
     const page = await app.$ghost.pages.read({
@@ -28,6 +29,19 @@ export default Vue.extend({
     })
 
     return { page }
+  },
+  head() {
+    return {
+      title: this.page.title,
+      titleTemplate: `%s - ${theme.siteName}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.page.meta_description,
+        },
+      ],
+    }
   },
 })
 </script>

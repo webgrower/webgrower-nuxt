@@ -1,3 +1,5 @@
+import theme from './theme.config'
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -13,11 +15,27 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'defite-nuxt-blog',
+    title: theme.siteName,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: theme.siteDescription,
+      },
+      { hid: 'og:title', name: 'og:title', content: theme.siteName },
+      { hid: 'og:site_name', name: 'og:site_name', content: theme.siteName },
+      {
+        hid: 'og:description',
+        name: 'og:description',
+        content: theme.siteDescription,
+      },
+      {
+        hid: 'apple-mobile-web-app-title',
+        name: 'apple-mobile-web-app-title',
+        content: theme.siteName,
+      },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -69,7 +87,7 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
-    '@nuxt/content',
+    // '@nuxt/content',
     'nuxt-ghost',
   ],
 
@@ -116,12 +134,11 @@ export default {
   },
 
   hooks: {
-    'content:file:beforeInsert': (document) => {
-      if (document.extension === '.md') {
-        const { text } = require('reading-time')(document.text)
-
-        document.readingTime = text
-      }
-    },
+    // 'content:file:beforeInsert': (document) => {
+    //   if (document.extension === '.md') {
+    //     const { text } = require('reading-time')(document.text)
+    //     document.readingTime = text
+    //   }
+    // }
   },
 }

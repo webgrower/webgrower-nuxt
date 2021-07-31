@@ -21,33 +21,53 @@
     </section>
 
     <Container>
-      <PostList :posts="posts" />
+      <PostList :posts="posts" :pagination="pagination" />
     </Container>
   </main>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import Container from '~/components/Container.vue'
 import PostList from '~/components/PostList.vue'
+import theme from '~/theme.config'
+
 export default Vue.extend({
   components: {
     Container,
     PostList,
   },
   async asyncData({ app, params }) {
-    const { name, description } = await app.$ghost.tags.read({
+    const category = await app.$ghost.tags.read({
       slug: params.category,
     })
 
+    const { name, description } = category
+
     const postsData = await app.$ghost.posts.browse({
       filter: `tag:${params.category}`,
+      limit: 6,
       include: 'tags',
     })
 
-    const posts = postsData.filter((item: any) => item.slug)
+    const { pagination } = postsData.meta
 
-    return { name, description, posts }
+    const posts = postsData.filter((item) => item.slug)
+
+    return { name, description, posts, pagination }
+  },
+  head() {
+    return {
+      title: this.name,
+      titleTemplate: `%s – ${theme.siteName}`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: 'Blog about web staff, games, music and life around',
+        },
+      ],
+    }
   },
 })
 </script>

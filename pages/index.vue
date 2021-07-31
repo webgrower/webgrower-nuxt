@@ -1,6 +1,6 @@
 <template>
   <Container>
-    <PostList :posts="posts" />
+    <PostList :posts="posts" :pagination="pagination" />
   </Container>
 </template>
 
@@ -13,10 +13,13 @@ export default Vue.extend({
     Container,
     PostList,
   },
-  async asyncData({ app }) {
+  async asyncData({ app, params }) {
+    const page = params.page ? parseInt(params.page, 10) : 1
+
     const posts = await app.$ghost.posts
       .browse({
         limit: 6,
+        page,
         order: 'published_at DESC',
         include: ['tags'],
       })
@@ -24,7 +27,9 @@ export default Vue.extend({
         console.error(err)
       })
 
-    return { posts }
+    const { pagination } = posts.meta
+
+    return { posts, pagination }
   },
 })
 </script>

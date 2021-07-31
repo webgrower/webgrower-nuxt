@@ -18,7 +18,7 @@
       "
     >
       <div class="text-sm md:text-base leading-6 text-center text-gray-400">
-        © 2021 {{ name }}. Some rights reserved.
+        © 2021 {{ name }}. Некоторые права защищены.
       </div>
       <div class="flex justify-center space-x-8">
         <a

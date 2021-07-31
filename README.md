@@ -1,4 +1,4 @@
-# defite-nuxt-blog
+# webgrower-nuxt
 
 ## Build Setup
 

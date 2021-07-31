@@ -15,7 +15,7 @@
         px-4
       "
     >
-      <header class="mb-20">
+      <header class="mb-10">
         <div class="mb-3 text-gray-500 tracking-wider text-sm font-medium">
           <NuxtLink
             v-if="post.tags && post.tags[0]"
