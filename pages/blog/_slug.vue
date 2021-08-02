@@ -100,7 +100,24 @@ export default Vue.extend({
       (item) => item.slug && item.slug !== post.slug
     )
 
-    return { post, prevPost, nextPost, relatedPosts }
+    // Build image for social networks (twitter, facebook, telegram)
+    const cloudinaryUrl =
+      'https://res.cloudinary.com/webgrower/image/fetch/f_auto,q_75,'
+    const featuredImageTwitter = post.feature_image
+      ? `${cloudinaryUrl}w_600,h_314/${post.feature_image}`
+      : ''
+    const featuredImageFb = post.feature_image
+      ? `${cloudinaryUrl}w_600,h_600/${post.feature_image}`
+      : ''
+
+    return {
+      post,
+      prevPost,
+      nextPost,
+      relatedPosts,
+      featuredImageFb,
+      featuredImageTwitter,
+    }
   },
   head() {
     return {
@@ -110,7 +127,52 @@ export default Vue.extend({
         {
           hid: 'description',
           name: 'description',
-          content: this.post.description,
+          content: this.post.excerpt,
+        },
+        {
+          hid: 'og:url',
+          name: 'og:url',
+          content: `${theme.siteUrl}/blog/${this.post.slug}`,
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          content: this.post.title,
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          content: this.post.excerpt,
+        },
+        {
+          hid: 'og:image',
+          name: 'og:image',
+          content: this.featuredImageFb,
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: `${theme.siteUrl}/blog/${this.post.slug}`,
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: this.post.title,
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content: this.post.excerpt,
+        },
+        {
+          hid: 'twitter:image',
+          name: 'og:image',
+          content: this.featuredImageTwitter,
         },
       ],
     }

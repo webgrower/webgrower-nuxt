@@ -26,6 +26,7 @@ export default {
       },
       { hid: 'og:title', name: 'og:title', content: theme.siteName },
       { hid: 'og:site_name', name: 'og:site_name', content: theme.siteName },
+      { hid: 'og:type', name: 'og:type', content: 'website' },
       {
         hid: 'og:description',
         name: 'og:description',
