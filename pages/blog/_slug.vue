@@ -102,12 +102,12 @@ export default Vue.extend({
 
     // Build image for social networks (twitter, facebook, telegram)
     const cloudinaryUrl =
-      'https://res.cloudinary.com/webgrower/image/fetch/f_auto,q_75,'
+      'https://res.cloudinary.com/webgrower/image/fetch/f_auto,q_75,c_crop'
     const featuredImageTwitter = post.feature_image
-      ? `${cloudinaryUrl}w_600,h_314/${post.feature_image}`
+      ? `${cloudinaryUrl}w_600/${post.feature_image}`
       : ''
     const featuredImageFb = post.feature_image
-      ? `${cloudinaryUrl}w_600,h_600/${post.feature_image}`
+      ? `${cloudinaryUrl}w_600/${post.feature_image}`
       : ''
 
     return {
